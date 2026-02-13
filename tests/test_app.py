@@ -1,9 +1,9 @@
-"""Unit test for application."""
+"""Unit tests for the Flask application."""
 from app import app
 
 
 def test_hello():
-    """Returns Hello, World."""
+    """Test that the root endpoint returns Hello, World."""
     response = app.test_client().get('/')
 
     assert response.status_code == 200

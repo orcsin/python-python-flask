@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=69.5.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hello_world"
+dynamic = ["version"]
+description = "A simple hello world Flask app"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.13"
+dependencies = [
+    "click==8.1.7",
+    "Flask==3.1.2",
+    "itsdangerous==2.2.0",
+    "Jinja2==3.1.6",
+    "MarkupSafe==3.0.3",
+    "Werkzeug==3.1.5",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.4.4",
+    "flake8>=7.0.0",
+    "pylint>=3.0.0",
+]
+dev = [
+    "twine>=5.1.1",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "version.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["version*"]
+exclude = ["tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-rsxX -l --tb=short --junitxml=test-report.xml"
+
+[tool.flake8]
+max-line-length = 120
+exclude = [".git", "__pycache__", "build", "dist", "*.egg-info"]
+
+[tool.pylint.messages_control]
+disable = ["C0114", "C0115", "C0116"]
+
+[tool.pylint.format]
+max-line-length = 120
